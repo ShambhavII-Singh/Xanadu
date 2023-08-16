@@ -102,9 +102,14 @@ const Header = () => {
               justifyContent="center"
             >
               {user?.name && (
-                <Typography variant="subtitle2" data-testid="header-user-name">
+                <u style={{color: "rgba(89,107,234,1)"}}><Typography variant="subtitle2" data-testid="header-user-name" className="user__name"
+                style={{
+                  color: "rgba(89,107,234,1)",
+                  fontWeight: "bold",
+                  fontSize: "14px",
+                }}>
                   {user?.name}
-                </Typography>
+                </Typography></u>
               )}
               {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
             </Stack>
