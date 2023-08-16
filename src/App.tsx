@@ -1,10 +1,11 @@
 import {
   AuthBindings,
   Authenticated,
-  GitHubBanner,
   Refine,
 } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+
+import {useContext} from "react";
 
 import {
   ErrorComponent,
@@ -30,17 +31,25 @@ import {
   BlogPostList,
   BlogPostShow,
 } from "pages/blog-posts";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "pages/categories";
+
 import { Login } from "pages/login";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
-import { Header } from "./components/header";
-import { ColorModeContextProvider } from "./contexts/color-mode";
+import {
+  useGetIdentity,
+  useActiveAuthProvider,
+} from "@refinedev/core";
+import { HamburgerMenu } from "./components/themedLayout/hamburgerMenu";
+import Avatar from "@mui/material/Avatar";
+
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+
+import { ColorModeContextProvider, ColorModeContext } from "./contexts/color-mode";
+  
+import { AppBar, IconButton, Box, Stack } from "@mui/material";
+
+import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -55,6 +64,55 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 
   return request;
 });
+  
+
+const Header = () => {
+  const { mode, setMode } = useContext(ColorModeContext);
+  const authProvider = useActiveAuthProvider();
+  const { data: user } = useGetIdentity({
+    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+  });
+  return (
+      <AppBar color="default" position="sticky">
+        <Toolbar>
+          <HamburgerMenu />
+          <Stack
+            direction="row"
+            width="100%"
+            justifyContent="flex-end"
+            alignItems="center"
+          >
+            <Box marginRight="10px">
+              <IconButton
+                  onClick={() => {
+                      setMode();
+                  }}
+              >
+                  {mode === "dark" ? (
+                      <LightModeOutlined />
+                  ) : (
+                      <DarkModeOutlined />
+                  )}
+              </IconButton>
+            </Box>
+            <Stack
+              direction="row"
+              gap="16px"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {user?.name && (
+                <Typography variant="subtitle2" data-testid="header-user-name">
+                  {user?.name}
+                </Typography>
+              )}
+              {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
+            </Stack>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+  );
+};
 
 function App() {
   const authProvider: AuthBindings = {
@@ -135,7 +193,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
@@ -157,28 +214,18 @@ function App() {
                     canDelete: true,
                   },
                 },
-                {
-                  name: "categories",
-                  list: "/categories",
-                  create: "/categories/create",
-                  edit: "/categories/edit/:id",
-                  show: "/categories/show/:id",
-                  meta: {
-                    canDelete: true,
-                  },
-                },
               ]}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
-                projectId: "kyrcOI-ofGYbT-zsSNu2",
+                projectId: "YJSPSW-sVg6sV-4FcWKw",
               }}
             >
               <Routes>
                 <Route
                   element={
                     <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                      <ThemedLayoutV2 Header={() => <Header isSticky={true} />}>
+                      <ThemedLayoutV2 Header={Header}>
                         <Outlet />
                       </ThemedLayoutV2>
                     </Authenticated>
@@ -193,12 +240,6 @@ function App() {
                     <Route path="create" element={<BlogPostCreate />} />
                     <Route path="edit/:id" element={<BlogPostEdit />} />
                     <Route path="show/:id" element={<BlogPostShow />} />
-                  </Route>
-                  <Route path="/categories">
-                    <Route index element={<CategoryList />} />
-                    <Route path="create" element={<CategoryCreate />} />
-                    <Route path="edit/:id" element={<CategoryEdit />} />
-                    <Route path="show/:id" element={<CategoryShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>

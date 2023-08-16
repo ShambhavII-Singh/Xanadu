@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import { ThemedTitleV2 } from "@refinedev/mui";
+
+import { xanadu } from "../assets";
 
 import { CredentialResponse } from "../interfaces/google";
 
@@ -48,11 +49,13 @@ export const Login: React.FC = () => {
 
   return (
     <Container
+      maxWidth={false}
       style={{
         height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        background: "radial-gradient(circle, rgba(173,178,255,1) 0%, rgba(89,107,234,1) 50%, rgba(5,9,82,1) 100%)"
       }}
     >
       <Box
@@ -60,21 +63,36 @@ export const Login: React.FC = () => {
         gap="36px"
         justifyContent="center"
         flexDirection="column"
+        style={{
+          background: "#FCFCFC",
+          padding: "35px 70px",
+          borderRadius: "21px"
+        }}
       >
-        <ThemedTitleV2
-          collapsed={false}
-          wrapperStyles={{
-            fontSize: "22px",
-            justifyContent: "center",
+        <div 
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center"
           }}
-        />
+        >
+          <img src={ xanadu } alt="Xanadu logo" />
+          <h1 
+            style={{
+              color: "#101010",
+              fontSize: "41px",
+          }}>
+            Xanadu
+          </h1>
+        </div>
 
-        <GoogleButton />
+        <center><GoogleButton /></center>
 
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
+        <Typography align="center" color= "#101010" fontSize="12px" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
           Powered by
           <img
-            style={{ padding: "0 5px" }}
+            style={{ padding: "0 5px"}}
             alt="Google"
             src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
           />
