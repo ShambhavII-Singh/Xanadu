@@ -145,7 +145,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                       minWidth: "24px",
                       transition: "margin-right 0.3s",
                       marginRight: siderCollapsed ? "0px" : "12px",
-                      color: "currentColor",
                     }}
                   >
                     {icon ?? <ListOutlined />}
@@ -154,7 +153,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     primary={label}
                     primaryTypographyProps={{
                       noWrap: true,
-                      fontSize: "14px",
+                      fontSize: "16px",
+                      fontWeight: isSelected ? "bold" : "normal",
                     }}
                   />
                   {isOpen ? (
@@ -189,7 +189,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       }
 
       const linkStyle: CSSProperties =
-        activeItemDisabled && isSelected ? { pointerEvents: "none" } : {};
+        activeItemDisabled? isSelected ? { pointerEvents: "none"} : {background: "#ffffff", color: "#808191"}:
+        isSelected ? { background: "#475be8", color: "#ffffff"} : {};
 
       return (
         <CanAccess
@@ -216,7 +217,15 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 pl: isNested ? 4 : 2,
                 py: isNested ? 1.25 : 1,
                 justifyContent: "center",
-                color: isSelected ? "primary.main" : "text.primary",
+                margin: "10px auto",
+                borderRadius: "21px",
+                minHeight: "56px",
+                width: "90%",
+                ":hover": {
+                  textDecoration: "underline solid #808191 1px",
+                  border: isSelected? "none":"2px dashed #1b235c",
+                  background: "#fcfcfc",
+                } 
               }}
             >
               <ListItemIcon
@@ -225,7 +234,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                   transition: "margin-right 0.3s",
                   marginRight: siderCollapsed ? "0px" : "12px",
                   minWidth: "24px",
-                  color: "currentColor",
+                  color: isSelected? "#ffffff": "text.secondary",
                 }}
               >
                 {icon ?? <ListOutlined />}
@@ -234,7 +243,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 primary={label}
                 primaryTypographyProps={{
                   noWrap: true,
-                  fontSize: "14px",
+                  fontSize: "16px",
+                  fontWeight: isSelected ? "bold" : "normal",
                 }}
               />
             </ListItemButton>

@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { createTheme } from "@mui/material/styles";
 
 type ColorModeContextType = {
   mode: string;
@@ -21,7 +22,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 }) => {
   const colorModeFromLocalStorage = localStorage.getItem("colorMode");
   const isSystemPreferenceDark = window?.matchMedia(
-    "(prefers-color-scheme: dark)"
+    "(prefers-color-scheme: light)"
   ).matches;
 
   const systemPreference = isSystemPreferenceDark ? "dark" : "light";
@@ -40,6 +41,48 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
       setMode("light");
     }
   };
+  
+  const overridedLightTheme = createTheme({
+    ...RefineThemes.Blue,
+    palette: {
+        ...RefineThemes.Blue.palette,
+        primary: {
+            main: "#475be8",
+            light: "#848bff",
+            dark: "#1b235c",
+        },
+        background: {
+          default: "#f4f4f4",
+          paper: "#fcfcfc",
+        },
+        text: {
+          primary: "#626262",
+          secondary: "#808191",
+          disabled: "#c1c1c1",
+        }
+    },
+  });
+
+  const overridedDarkTheme = createTheme({
+    ...RefineThemes.Blue,
+    palette: {
+        ...RefineThemes.Blue.palette,
+        primary: {
+            main: "#475be8",
+            light: "#848bff",
+            dark: "#1b235c",
+        },
+        background: {
+          default: "#1a1d1f",
+          paper: "#1a1d1f",
+        },
+        text: {
+          primary: "#626262",
+          secondary: "#808191",
+          disabled: "#c1c1c1",
+        }
+    },
+  });
 
   return (
     <ColorModeContext.Provider
@@ -50,7 +93,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     >
       <ThemeProvider
         // you can change the theme colors here. example: mode === "light" ? RefineThemes.Magenta : RefineThemes.MagentaDark
-        theme={mode === "light" ? RefineThemes.Blue : RefineThemes.BlueDark}
+        theme={mode === "light" ? overridedLightTheme : overridedDarkTheme}
       >
         {children}
       </ThemeProvider>

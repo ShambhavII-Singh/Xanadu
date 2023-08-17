@@ -5,8 +5,6 @@ import {
 } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import {useContext} from "react";
-
 import {
   ErrorComponent,
   notificationProvider,
@@ -35,21 +33,12 @@ import {
 import { Login } from "pages/login";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
-import {
-  useGetIdentity,
-  useActiveAuthProvider,
-} from "@refinedev/core";
-import { HamburgerMenu } from "./components/themedLayout/hamburgerMenu";
-import Avatar from "@mui/material/Avatar";
 
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import { ColorModeContextProvider } from "./contexts/color-mode";
 
-import { ColorModeContextProvider, ColorModeContext } from "./contexts/color-mode";
-  
-import { AppBar, IconButton, Box, Stack } from "@mui/material";
-
-import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
+import { ThemedSiderV2, ThemedTitleV2 } from "components";
+import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "pages/categories";
+import { ThemedHeaderV2,  } from "components/themedLayout/header";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -64,60 +53,6 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 
   return request;
 });
-  
-
-const Header = () => {
-  const { mode, setMode } = useContext(ColorModeContext);
-  const authProvider = useActiveAuthProvider();
-  const { data: user } = useGetIdentity({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
-  return (
-      <AppBar color="default" position="sticky">
-        <Toolbar>
-          <HamburgerMenu />
-          <Stack
-            direction="row"
-            width="100%"
-            justifyContent="flex-end"
-            alignItems="center"
-          >
-            <Box marginRight="10px">
-              <IconButton
-                  onClick={() => {
-                      setMode();
-                  }}
-              >
-                  {mode === "dark" ? (
-                      <LightModeOutlined />
-                  ) : (
-                      <DarkModeOutlined />
-                  )}
-              </IconButton>
-            </Box>
-            <Stack
-              direction="row"
-              gap="16px"
-              alignItems="center"
-              justifyContent="center"
-            >
-              {user?.name && (
-                <u style={{color: "rgba(89,107,234,1)"}}><Typography variant="subtitle2" data-testid="header-user-name" className="user__name"
-                style={{
-                  color: "rgba(89,107,234,1)",
-                  fontWeight: "bold",
-                  fontSize: "14px",
-                }}>
-                  {user?.name}
-                </Typography></u>
-              )}
-              {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
-            </Stack>
-          </Stack>
-        </Toolbar>
-      </AppBar>
-  );
-};
 
 function App() {
   const authProvider: AuthBindings = {
@@ -210,11 +145,21 @@ function App() {
               authProvider={authProvider}
               resources={[
                 {
-                  name: "blog_posts",
+                  name: "Posts",
                   list: "/blog-posts",
                   create: "/blog-posts/create",
                   edit: "/blog-posts/edit/:id",
                   show: "/blog-posts/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
+                },
+                {
+                  name: "categories",
+                  list: "/categories",
+                  create: "/categories/create",
+                  edit: "/categories/edit/:id",
+                  show: "/categories/show/:id",
                   meta: {
                     canDelete: true,
                   },
@@ -230,7 +175,7 @@ function App() {
                 <Route
                   element={
                     <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                      <ThemedLayoutV2 Header={Header}>
+                      <ThemedLayoutV2 Header={ThemedHeaderV2} Sider={ThemedSiderV2} Title={ThemedTitleV2}>
                         <Outlet />
                       </ThemedLayoutV2>
                     </Authenticated>
@@ -245,6 +190,12 @@ function App() {
                     <Route path="create" element={<BlogPostCreate />} />
                     <Route path="edit/:id" element={<BlogPostEdit />} />
                     <Route path="show/:id" element={<BlogPostShow />} />
+                  </Route>
+                  <Route path="/categories">
+                    <Route index element={<CategoryList />} />
+                    <Route path="create" element={<CategoryCreate />} />
+                    <Route path="edit/:id" element={<CategoryEdit />} />
+                    <Route path="show/:id" element={<CategoryShow />} />
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>

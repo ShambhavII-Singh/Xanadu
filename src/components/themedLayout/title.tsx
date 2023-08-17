@@ -1,11 +1,11 @@
 import React from "react";
 import { useRouterContext, useLink, useRouterType } from "@refinedev/core";
 import MuiLink from "@mui/material/Link";
-import SvgIcon from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
 import type { RefineLayoutThemedTitleProps } from "@refinedev/mui";
+import {xanadu} from "../../assets";
 
-const defaultText = "refine Project";
+const defaultText = "Xanadu";
 
 const defaultIcon = (
   <svg
@@ -49,21 +49,22 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
       sx={{
         display: "flex",
         alignItems: "center",
-        gap: "12px",
+        gap: "2px",
+        marginLeft: collapsed ? "13px" : "0px",
+        justifyContent: "space-around",
         ...wrapperStyles,
       }}
     >
-      <SvgIcon height="24px" width="24px" color="primary">
-        {icon}
-      </SvgIcon>
+      <img src={xanadu} alt="Xanadu logo" style={{width: "auto", height: "35px"}} />
       {!collapsed && (
         <Typography
-          variant="h6"
+          variant="h5"
           fontWeight={700}
-          color="text.primary"
-          fontSize="inherit"
+          color="primary.dark"
+          fontSize="h1"
           textOverflow="ellipsis"
           overflow="hidden"
+          sx={{fontSize: "35px"}}
         >
           {text}
         </Typography>

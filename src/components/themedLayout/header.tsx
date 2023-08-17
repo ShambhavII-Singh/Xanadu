@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   useGetIdentity,
   useActiveAuthProvider,
@@ -11,20 +11,23 @@ import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
+import { Box, IconButton } from "@mui/material";
+import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
+import { ColorModeContext } from "../../contexts/color-mode";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   isSticky,
   sticky,
 }) => {
+  const prefferedSticky = pickNotDeprecated(sticky, isSticky) ?? true;
+  const { mode, setMode } = useContext(ColorModeContext);
   const authProvider = useActiveAuthProvider();
   const { data: user } = useGetIdentity({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
   });
-
-  const prefferedSticky = pickNotDeprecated(sticky, isSticky) ?? true;
-
+  
   return (
-    <AppBar position={prefferedSticky ? "sticky" : "relative"}>
+    <AppBar position={prefferedSticky ? "sticky" : "relative"} sx={{backgroundColor: "background.paper"}}>
       <Toolbar>
         <HamburgerMenu />
         <Stack
@@ -33,6 +36,19 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           justifyContent="flex-end"
           alignItems="center"
         >
+          <Box marginRight="10px">
+            <IconButton
+                onClick={() => {
+                    setMode();
+                }}
+            >
+                {mode === "dark" ? (
+                    <LightModeOutlined />
+                ) : (
+                    <DarkModeOutlined />
+                )}
+            </IconButton>
+          </Box>
           <Stack
             direction="row"
             gap="16px"
@@ -40,7 +56,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             justifyContent="center"
           >
             {user?.name && (
-              <Typography variant="subtitle2" data-testid="header-user-name">
+              <Typography variant="subtitle2" data-testid="header-user-name" sx={{color: "primary.dark"}}>
                 {user?.name}
               </Typography>
             )}
