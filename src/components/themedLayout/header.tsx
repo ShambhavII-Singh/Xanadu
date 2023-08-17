@@ -43,9 +43,9 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 }}
             >
                 {mode === "dark" ? (
-                    <LightModeOutlined />
+                    <LightModeOutlined sx={{color: "primary.dark"}}/>
                 ) : (
-                    <DarkModeOutlined />
+                    <DarkModeOutlined sx={{color: "primary.dark"}}/>
                 )}
             </IconButton>
           </Box>

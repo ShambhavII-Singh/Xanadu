@@ -40,6 +40,8 @@ import { ThemedSiderV2, ThemedTitleV2 } from "components";
 import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "pages/categories";
 import { ThemedHeaderV2,  } from "components/themedLayout/header";
 
+import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined } from "@mui/icons-material";
+
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
   const token = localStorage.getItem("token");
@@ -145,21 +147,57 @@ function App() {
               authProvider={authProvider}
               resources={[
                 {
-                  name: "Posts",
+                  name: "Properties",
                   list: "/blog-posts",
                   create: "/blog-posts/create",
                   edit: "/blog-posts/edit/:id",
                   show: "/blog-posts/show/:id",
+                  icon: <VillaOutlined />,
                   meta: {
                     canDelete: true,
                   },
                 },
                 {
-                  name: "categories",
+                  name: "Agents",
                   list: "/categories",
                   create: "/categories/create",
                   edit: "/categories/edit/:id",
                   show: "/categories/show/:id",
+                  icon: <PeopleAltOutlined />,
+                  meta: {
+                    canDelete: true,
+                  },
+                },
+                {
+                  name: "Reviews",
+                  list: "/blog-posts",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
+                  icon: <StarOutlineRounded />,
+                  meta: {
+                    canDelete: true,
+                  },
+                },
+                {
+                  name: "Messages",
+                  list: "/blog-posts",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
+                  icon: <ChatBubbleOutline />,
+                  meta: {
+                    canDelete: true,
+                  },
+                },
+                {
+                  name: "Profile",
+                  list: "/blog-posts",
+                  create: "/blog-posts/create",
+                  edit: "/blog-posts/edit/:id",
+                  show: "/blog-posts/show/:id",
+                  icon: <AccountCircleOutlined />,
+                  options: {label: "Profile"},
                   meta: {
                     canDelete: true,
                   },

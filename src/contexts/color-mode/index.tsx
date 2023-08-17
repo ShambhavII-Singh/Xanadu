@@ -70,14 +70,14 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         primary: {
             main: "#475be8",
             light: "#848bff",
-            dark: "#1b235c",
+            dark: "#ffffff",
         },
         background: {
           default: "#1a1d1f",
           paper: "#1a1d1f",
         },
         text: {
-          primary: "#626262",
+          primary: "#ffffff",
           secondary: "#808191",
           disabled: "#c1c1c1",
         }

@@ -189,7 +189,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       }
 
       const linkStyle: CSSProperties =
-        activeItemDisabled? isSelected ? { pointerEvents: "none"} : {background: "#ffffff", color: "#808191"}:
+        activeItemDisabled? isSelected ? { pointerEvents: "none"} : {}:
         isSelected ? { background: "#475be8", color: "#ffffff"} : {};
 
       return (
@@ -221,11 +221,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 borderRadius: "21px",
                 minHeight: "56px",
                 width: "90%",
-                ":hover": {
-                  textDecoration: "underline solid #808191 1px",
-                  border: isSelected? "none":"2px dashed #1b235c",
-                  background: "#fcfcfc",
-                } 
+                color: "text.primary",
               }}
             >
               <ListItemIcon
@@ -234,7 +230,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                   transition: "margin-right 0.3s",
                   marginRight: siderCollapsed ? "0px" : "12px",
                   minWidth: "24px",
-                  color: isSelected? "#ffffff": "text.secondary",
+                  color: isSelected? "#ffffff": "text.primary",
                 }}
               >
                 {icon ?? <ListOutlined />}
@@ -465,7 +461,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               justifyContent: siderCollapsed ? "center" : "space-between",
               paddingLeft: siderCollapsed ? 0 : "16px",
               paddingRight: siderCollapsed ? 0 : "8px",
-              variant: "outlined",
               borderRadius: 0,
               borderBottom: (theme) =>
                 `1px solid ${theme.palette.action.focus}`,
@@ -474,7 +469,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             <RenderToTitle collapsed={siderCollapsed} />
             {!siderCollapsed && (
               <IconButton size="small" onClick={() => setSiderCollapsed(true)}>
-                {<ChevronLeft />}
+                {<ChevronLeft sx={{color: "primary.dark"}} />}
               </IconButton>
             )}
           </Paper>
