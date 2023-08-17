@@ -30,7 +30,18 @@ import {
   BlogPostShow,
 } from "pages/blog-posts";
 
-import { Login } from "pages/login";
+import { 
+  Login,
+  Home,
+  AgentProfile,
+  Agent,
+  AllProperties,
+  CreateProperties,
+  EditProperties,
+  Profile,
+  PropertyDetails
+} from "pages";
+
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
 
@@ -41,6 +52,7 @@ import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "pages/
 import { ThemedHeaderV2,  } from "components/themedLayout/header";
 
 import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined } from "@mui/icons-material";
+import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -145,13 +157,11 @@ function App() {
               notificationProvider={notificationProvider}
               routerProvider={routerBindings}
               authProvider={authProvider}
+              DashboardPage={Home}
               resources={[
                 {
                   name: "Properties",
-                  list: "/blog-posts",
-                  create: "/blog-posts/create",
-                  edit: "/blog-posts/edit/:id",
-                  show: "/blog-posts/show/:id",
+                  list: MuiInferencer,
                   icon: <VillaOutlined />,
                   meta: {
                     canDelete: true,
@@ -159,10 +169,7 @@ function App() {
                 },
                 {
                   name: "Agents",
-                  list: "/categories",
-                  create: "/categories/create",
-                  edit: "/categories/edit/:id",
-                  show: "/categories/show/:id",
+                  list: MuiInferencer,
                   icon: <PeopleAltOutlined />,
                   meta: {
                     canDelete: true,
@@ -170,10 +177,7 @@ function App() {
                 },
                 {
                   name: "Reviews",
-                  list: "/blog-posts",
-                  create: "/blog-posts/create",
-                  edit: "/blog-posts/edit/:id",
-                  show: "/blog-posts/show/:id",
+                  list: MuiInferencer,
                   icon: <StarOutlineRounded />,
                   meta: {
                     canDelete: true,
@@ -181,10 +185,7 @@ function App() {
                 },
                 {
                   name: "Messages",
-                  list: "/blog-posts",
-                  create: "/blog-posts/create",
-                  edit: "/blog-posts/edit/:id",
-                  show: "/blog-posts/show/:id",
+                  list: MuiInferencer,
                   icon: <ChatBubbleOutline />,
                   meta: {
                     canDelete: true,
@@ -192,10 +193,7 @@ function App() {
                 },
                 {
                   name: "Profile",
-                  list: "/blog-posts",
-                  create: "/blog-posts/create",
-                  edit: "/blog-posts/edit/:id",
-                  show: "/blog-posts/show/:id",
+                  list: MuiInferencer,
                   icon: <AccountCircleOutlined />,
                   options: {label: "Profile"},
                   meta: {
@@ -221,15 +219,33 @@ function App() {
                 >
                   <Route
                     index
-                    element={<NavigateToResource resource="blog_posts" />}
+                    element={<NavigateToResource resource="properties" />}
                   />
-                  <Route path="/blog-posts">
+                  <Route path="/properties">
                     <Route index element={<BlogPostList />} />
                     <Route path="create" element={<BlogPostCreate />} />
                     <Route path="edit/:id" element={<BlogPostEdit />} />
                     <Route path="show/:id" element={<BlogPostShow />} />
                   </Route>
-                  <Route path="/categories">
+                  <Route path="/agents">
+                    <Route index element={<CategoryList />} />
+                    <Route path="create" element={<CategoryCreate />} />
+                    <Route path="edit/:id" element={<CategoryEdit />} />
+                    <Route path="show/:id" element={<CategoryShow />} />
+                  </Route>
+                  <Route path="/reviews">
+                    <Route index element={<CategoryList />} />
+                    <Route path="create" element={<CategoryCreate />} />
+                    <Route path="edit/:id" element={<CategoryEdit />} />
+                    <Route path="show/:id" element={<CategoryShow />} />
+                  </Route>
+                  <Route path="/messages">
+                    <Route index element={<CategoryList />} />
+                    <Route path="create" element={<CategoryCreate />} />
+                    <Route path="edit/:id" element={<CategoryEdit />} />
+                    <Route path="show/:id" element={<CategoryShow />} />
+                  </Route>
+                  <Route path="/profile">
                     <Route index element={<CategoryList />} />
                     <Route path="create" element={<CategoryCreate />} />
                     <Route path="edit/:id" element={<CategoryEdit />} />

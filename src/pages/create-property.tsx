@@ -1,9 +1,9 @@
 import React from 'react'
 
-const createProperties = () => {
+const CreateProperties = () => {
   return (
     <div>createProperties</div>
   )
 }
 
-export default createProperties
+export default CreateProperties

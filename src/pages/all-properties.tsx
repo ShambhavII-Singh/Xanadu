@@ -1,9 +1,9 @@
 import React from 'react'
 
-const allProperties = () => {
+const AllProperties = () => {
     return (
         <div>allProperties</div>
     )
 }
 
-export default allProperties
+export default AllProperties

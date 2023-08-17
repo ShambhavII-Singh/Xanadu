@@ -51,7 +51,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   } = useThemedLayoutContext();
 
   const drawerWidth = () => {
-    if (siderCollapsed) return 56;
+    if (siderCollapsed) return 60;
     return 240;
   };
 
@@ -188,7 +188,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         );
       }
 
-      const linkStyle: CSSProperties =
+      const linkStyle1: CSSProperties =
         activeItemDisabled? isSelected ? { pointerEvents: "none"} : {}:
         isSelected ? { background: "#475be8", color: "#ffffff"} : {};
 
@@ -209,7 +209,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               component={ActiveLink}
               to={route}
               selected={isSelected}
-              style={linkStyle}
+              style={linkStyle1}
               onClick={() => {
                 setMobileSiderOpen(false);
               }}
@@ -250,6 +250,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     });
   };
 
+  const linkStyle2: CSSProperties =
+    activeItemDisabled? selectedKey==="/" ? { pointerEvents: "none"} : {}:
+    selectedKey==="/" ? { background: "#475be8", color: "#ffffff"} : {};
   const dashboard = hasDashboard ? (
     <CanAccess resource="dashboard" action="list">
       <Tooltip
@@ -259,6 +262,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         arrow
       >
         <ListItemButton
+          style={linkStyle2}
           component={ActiveLink}
           to="/"
           selected={selectedKey === "/"}
@@ -269,7 +273,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             pl: 2,
             py: 1,
             justifyContent: "center",
-            color: selectedKey === "/" ? "primary.main" : "text.primary",
+            backgroundColor: selectedKey === "/" ? "#475be8" : "background.paper",
+            margin: "10px auto",
+            borderRadius: "21px",
+            minHeight: "56px",
+            width: "90%",
           }}
         >
           <ListItemIcon
@@ -278,7 +286,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               minWidth: "24px",
               transition: "margin-right 0.3s",
               marginRight: siderCollapsed ? "0px" : "12px",
-              color: "currentColor",
+              color: selectedKey === "/"? "#ffffff": "text.primary",
               fontSize: "14px",
             }}
           >
@@ -289,6 +297,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             primaryTypographyProps={{
               noWrap: true,
               fontSize: "14px",
+              color: selectedKey === "/"? "#ffffff": "text.primary",
+              fontWeight: selectedKey === "/" ? "bold" : "normal",
             }}
           />
         </ListItemButton>
@@ -375,7 +385,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       disablePadding
       sx={{
         flexGrow: 1,
-        paddingTop: "16px",
+        paddingTop: "3px",
       }}
     >
       {renderSider()}
@@ -445,6 +455,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               width: drawerWidth(),
               overflow: "hidden",
               transition: "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
+              padding: "0px 5px"
             },
           }}
           open
