@@ -190,7 +190,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
       const linkStyle1: CSSProperties =
         activeItemDisabled? isSelected ? { pointerEvents: "none"} : {}:
-        isSelected ? { background: "#475be8", color: "#ffffff"} : {};
+        isSelected ? { background: "#38b000", color: "#ffffff"} : {};
 
       return (
         <CanAccess
@@ -255,7 +255,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
   const linkStyle2: CSSProperties =
     activeItemDisabled? selectedKey==="/" ? { pointerEvents: "none"} : {}:
-    selectedKey==="/" ? { background: "#475be8", color: "#ffffff"} : {};
+    selectedKey==="/" ? { background: "#38b000", color: "#ffffff"} : {};
   const dashboard = hasDashboard ? (
     <CanAccess resource="dashboard" action="list">
       <Tooltip

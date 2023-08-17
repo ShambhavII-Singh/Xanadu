@@ -47,9 +47,9 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     palette: {
         ...RefineThemes.Blue.palette,
         primary: {
-            main: "#475be8",
-            dark: "#1b235c",
-            light: "#ECECF9",
+            main: "#38b000",
+            dark: "#002913",
+            light: "#E7FFDD",
         },
         background: {
           default: "#f4f4f4",
@@ -67,9 +67,9 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
     palette: {
         ...RefineThemes.Blue.palette,
         primary: {
-            main: "#475be8",
+            main: "#38b000",
             dark: "#ffffff",
-            light: "#53577B",
+            light: "#194D19",
         },
         background: {
           default: "#111315",

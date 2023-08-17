@@ -34,7 +34,7 @@ export const Login: React.FC = () => {
           },
         });
         window.google.accounts.id.renderButton(divRef.current, {
-          theme: "filled_blue",
+          theme: "outline",
           size: "medium",
           type: "standard",
         });
@@ -54,7 +54,7 @@ export const Login: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: "radial-gradient(circle, rgba(173,178,255,1) 0%, rgba(89,107,234,1) 50%, rgba(5,9,82,1) 100%)"
+        background: "radial-gradient(circle, #ccff33 0%, #9ef01a 12.5%, #70e000 25%, #38b000 37.5%, #008000 50%, #007200 62.5%, #006400 75%, #004b23 87.5%, #002812 100%)"
       }}
     >
       <Box
@@ -64,8 +64,9 @@ export const Login: React.FC = () => {
         flexDirection="column"
         style={{
           background: "#FCFCFC",
-          padding: "35px 70px",
-          borderRadius: "21px"
+          padding: "20px 35px",
+          borderRadius: "21px",
+          border: "2px dashed #002913",
         }}
       >
         <div 
@@ -79,7 +80,7 @@ export const Login: React.FC = () => {
           <img src={ xanadu } alt="Xanadu logo" />
           <h1 
             style={{
-              color: "#101010",
+              color: "#002913",
               fontSize: "41px",
           }}>
             Xanadu
@@ -91,7 +92,7 @@ export const Login: React.FC = () => {
         <Typography align="center" color= "#101010" fontSize="12px" style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
           Powered by
           <img
-            style={{ padding: "0 5px"}}
+            style={{ padding: "5px"}}
             alt="Google"
             src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
           />
