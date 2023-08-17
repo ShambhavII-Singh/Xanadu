@@ -6,12 +6,11 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 
 import { xanadu } from "../assets";
-
 import { CredentialResponse } from "../interfaces/google";
 
 // Todo: Update your Google Client ID here
-const GOOGLE_CLIENT_ID =
-  "1041339102270-e1fpe2b6v6u1didfndh7jkjmpcashs4f.apps.googleusercontent.com";
+const REACT_APP_GOOGLE_AUTH_CLIENT_ID =
+  "873595576519-7msropfqjl23nupg4unjqun93n8nm19v.apps.googleusercontent.com";
 
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
@@ -27,7 +26,7 @@ export const Login: React.FC = () => {
       try {
         window.google.accounts.id.initialize({
           ux_mode: "popup",
-          client_id: GOOGLE_CLIENT_ID,
+          client_id: REACT_APP_GOOGLE_AUTH_CLIENT_ID,
           callback: async (res: CredentialResponse) => {
             if (res.credential) {
               login(res);

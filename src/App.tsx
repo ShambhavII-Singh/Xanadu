@@ -23,23 +23,17 @@ import routerBindings, {
 import dataProvider from "@refinedev/simple-rest";
 import axios, { AxiosRequestConfig } from "axios";
 import { CredentialResponse } from "interfaces/google";
-import {
-  BlogPostCreate,
-  BlogPostEdit,
-  BlogPostList,
-  BlogPostShow,
-} from "pages/blog-posts";
 
 import { 
   Login,
   Home,
-  AgentProfile,
-  Agent,
-  AllProperties,
-  CreateProperties,
-  EditProperties,
-  Profile,
-  PropertyDetails
+  // AgentProfile,
+  // Agent,
+  // AllProperties,
+  // CreateProperties,
+  // EditProperties,
+  // Profile,
+  // PropertyDetails
 } from "pages";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -48,10 +42,9 @@ import { parseJwt } from "utils/parse-jwt";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 
 import { ThemedSiderV2, ThemedTitleV2 } from "components";
-import { CategoryCreate, CategoryEdit, CategoryList, CategoryShow } from "pages/categories";
 import { ThemedHeaderV2,  } from "components/themedLayout/header";
 
-import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined } from "@mui/icons-material";
+import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined, DashboardOutlined } from "@mui/icons-material";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const axiosInstance = axios.create();
@@ -157,8 +150,15 @@ function App() {
               notificationProvider={notificationProvider}
               routerProvider={routerBindings}
               authProvider={authProvider}
-              DashboardPage={Home}
               resources={[
+                {
+                  name:"dashboard",
+                  list:"/",
+                  meta:{
+                    label:"Dashboard",
+                    icon:<DashboardOutlined/>,
+                  },
+                },
                 {
                   name: "Properties",
                   list: MuiInferencer,
@@ -219,38 +219,9 @@ function App() {
                 >
                   <Route
                     index
-                    element={<NavigateToResource resource="properties" />}
+                    element={<Home />}
                   />
-                  <Route path="/properties">
-                    <Route index element={<BlogPostList />} />
-                    <Route path="create" element={<BlogPostCreate />} />
-                    <Route path="edit/:id" element={<BlogPostEdit />} />
-                    <Route path="show/:id" element={<BlogPostShow />} />
-                  </Route>
-                  <Route path="/agents">
-                    <Route index element={<CategoryList />} />
-                    <Route path="create" element={<CategoryCreate />} />
-                    <Route path="edit/:id" element={<CategoryEdit />} />
-                    <Route path="show/:id" element={<CategoryShow />} />
-                  </Route>
-                  <Route path="/reviews">
-                    <Route index element={<CategoryList />} />
-                    <Route path="create" element={<CategoryCreate />} />
-                    <Route path="edit/:id" element={<CategoryEdit />} />
-                    <Route path="show/:id" element={<CategoryShow />} />
-                  </Route>
-                  <Route path="/messages">
-                    <Route index element={<CategoryList />} />
-                    <Route path="create" element={<CategoryCreate />} />
-                    <Route path="edit/:id" element={<CategoryEdit />} />
-                    <Route path="show/:id" element={<CategoryShow />} />
-                  </Route>
-                  <Route path="/profile">
-                    <Route index element={<CategoryList />} />
-                    <Route path="create" element={<CategoryCreate />} />
-                    <Route path="edit/:id" element={<CategoryEdit />} />
-                    <Route path="show/:id" element={<CategoryShow />} />
-                  </Route>
+                  
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
                 <Route

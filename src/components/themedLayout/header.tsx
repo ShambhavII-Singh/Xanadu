@@ -4,7 +4,7 @@ import {
   useActiveAuthProvider,
   pickNotDeprecated,
 } from "@refinedev/core";
-import { HamburgerMenu } from "./hamburgerMenu";
+
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
@@ -29,7 +29,6 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   return (
     <AppBar position={prefferedSticky ? "sticky" : "relative"} sx={{backgroundColor: "background.paper"}}>
       <Toolbar>
-        <HamburgerMenu />
         <Stack
           direction="row"
           width="100%"

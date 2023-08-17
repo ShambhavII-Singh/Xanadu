@@ -222,6 +222,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 minHeight: "56px",
                 width: "90%",
                 color: "text.primary",
+                ":hover": {
+                  backgroundColor: isSelected ? "" : "primary.light",
+                }
               }}
             >
               <ListItemIcon
@@ -230,7 +233,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                   transition: "margin-right 0.3s",
                   marginRight: siderCollapsed ? "0px" : "12px",
                   minWidth: "24px",
-                  color: isSelected? "#ffffff": "text.primary",
+                  color: isSelected? "#ffffff": "text.secondary",
                 }}
               >
                 {icon ?? <ListOutlined />}
@@ -278,6 +281,9 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             borderRadius: "21px",
             minHeight: "56px",
             width: "90%",
+            ":hover": {
+              backgroundColor: selectedKey === "/" ? "" : "primary.light",
+            }
           }}
         >
           <ListItemIcon
@@ -286,7 +292,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               minWidth: "24px",
               transition: "margin-right 0.3s",
               marginRight: siderCollapsed ? "0px" : "12px",
-              color: selectedKey === "/"? "#ffffff": "text.primary",
+              color: selectedKey === "/"? "#ffffff": "text.secondary",
               fontSize: "14px",
             }}
           >

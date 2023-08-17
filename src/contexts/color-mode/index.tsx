@@ -48,8 +48,8 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         ...RefineThemes.Blue.palette,
         primary: {
             main: "#475be8",
-            light: "#848bff",
             dark: "#1b235c",
+            light: "#ECECF9",
         },
         background: {
           default: "#f4f4f4",
@@ -58,7 +58,6 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         text: {
           primary: "#626262",
           secondary: "#808191",
-          disabled: "#c1c1c1",
         }
     },
   });
@@ -69,17 +68,16 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         ...RefineThemes.Blue.palette,
         primary: {
             main: "#475be8",
-            light: "#848bff",
             dark: "#ffffff",
+            light: "#53577B",
         },
         background: {
-          default: "#1a1d1f",
+          default: "#111315",
           paper: "#1a1d1f",
         },
         text: {
           primary: "#ffffff",
-          secondary: "#808191",
-          disabled: "#c1c1c1",
+          secondary: "#ffffff",
         }
     },
   });

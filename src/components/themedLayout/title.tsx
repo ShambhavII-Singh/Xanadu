@@ -4,6 +4,7 @@ import MuiLink from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import type { RefineLayoutThemedTitleProps } from "@refinedev/mui";
 import {xanadu} from "../../assets";
+import { HamburgerMenu } from "./hamburgerMenu";
 
 const defaultText = "Xanadu";
 
@@ -50,24 +51,27 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
         display: "flex",
         alignItems: "center",
         gap: "2px",
-        marginLeft: collapsed ? "13px" : "0px",
-        justifyContent: "space-around",
+        marginLeft: collapsed ? "27px" : "0px",
+        justifyContent: "center",
         ...wrapperStyles,
       }}
     >
-      <img src={xanadu} alt="Xanadu logo" style={{width: "auto", height: "35px"}} />
+      {collapsed && (<HamburgerMenu />)}
       {!collapsed && (
-        <Typography
-          variant="h5"
-          fontWeight={700}
-          color="primary.dark"
-          fontSize="h1"
-          textOverflow="ellipsis"
-          overflow="hidden"
-          sx={{fontSize: "35px"}}
-        >
-          {text}
-        </Typography>
+        <>
+          <img src={xanadu} alt="Xanadu logo" style={{width: "auto", height: "35px"}} />
+          <Typography
+            variant="h5"
+            fontWeight={700}
+            color="primary.dark"
+            fontSize="h1"
+            textOverflow="ellipsis"
+            overflow="hidden"
+            sx={{fontSize: "35px"}}
+          >
+            {text}
+          </Typography>
+        </>
       )}
     </MuiLink>
   );
