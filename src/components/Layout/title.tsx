@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import type { RefineLayoutThemedTitleProps } from "@refinedev/mui";
 import {xanadu} from "../../assets";
 import { HamburgerMenu } from "./hamburgerMenu";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const defaultText = "Xanadu";
 
@@ -41,6 +42,8 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
   const { Link: LegacyLink } = useRouterContext();
 
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
+  
+  const isMobile = useMediaQuery('(max-width: 900px)');
 
   return (
     <MuiLink
@@ -51,7 +54,7 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
         display: "flex",
         alignItems: "center",
         gap: "2px",
-        marginLeft: collapsed ? "27px" : "0px",
+        marginLeft: collapsed ? (isMobile ? "0px" : "27px") : (isMobile ? 0 : "0px"),
         justifyContent: "center",
         ...wrapperStyles,
       }}

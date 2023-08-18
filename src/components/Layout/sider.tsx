@@ -36,6 +36,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
 import type { RefineThemedLayoutV2SiderProps } from "@refinedev/mui";
+import { Menu } from "@mui/icons-material";
 
 export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   Title: TitleFromProps,
@@ -92,6 +93,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const handleClick = (key: string) => {
     setOpen({ ...open, [key]: !open[key] });
   };
+
 
   const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
     return tree.map((item: ITreeMenu) => {
@@ -189,8 +191,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       }
 
       const linkStyle1: CSSProperties =
-        activeItemDisabled? isSelected ? { pointerEvents: "none"} : {}:
-        isSelected ? { background: "#38b000", color: "#ffffff"} : {};
+        activeItemDisabled && isSelected ? { pointerEvents: "none"} : {background: isSelected ? "#38b000": "", color: isSelected ? "#ffffff": ""};
 
       return (
         <CanAccess
@@ -276,7 +277,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             pl: 2,
             py: 1,
             justifyContent: "center",
-            backgroundColor: selectedKey === "/" ? "#475be8" : "background.paper",
+            backgroundColor: selectedKey === "/" ? "#38b000" : "background.paper",
             margin: "10px auto",
             borderRadius: "21px",
             minHeight: "56px",
@@ -381,7 +382,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       <>
         {dashboard}
         {items}
-        {logout}
       </>
     );
   };
@@ -420,8 +420,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         }}
       >
         <Drawer
-          variant="temporary"
-          elevation={2}
+          variant="permanent"
+          elevation={0}
           open={mobileSiderOpen}
           onClose={() => setMobileSiderOpen(false)}
           ModalProps={{
@@ -448,7 +448,26 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 fontSize: "14px",
               }}
             >
-              <RenderToTitle collapsed={false} />
+              
+              {(!siderCollapsed) && (
+                <>
+                <RenderToTitle collapsed={siderCollapsed} />
+                <IconButton size="small" onClick={() => setSiderCollapsed(true)}>
+                  {<ChevronLeft sx={{color: "primary.dark"}} />}
+                </IconButton>
+                </>
+              )}
+
+              {(siderCollapsed) && (
+                <>
+                <RenderToTitle collapsed={siderCollapsed} />
+                <IconButton size="small" onClick={() => setSiderCollapsed(false)}>
+                  {<Menu sx={{color: "primary.dark", marginLeft: "0px", paddingLeft: "0px"}} />}
+                </IconButton>
+                </>
+              )}
+              
+
             </Box>
             {drawer}
           </Box>
@@ -484,11 +503,13 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             }}
           >
             <RenderToTitle collapsed={siderCollapsed} />
-            {!siderCollapsed && (
+            
+            {(!siderCollapsed) && (
               <IconButton size="small" onClick={() => setSiderCollapsed(true)}>
                 {<ChevronLeft sx={{color: "primary.dark"}} />}
               </IconButton>
             )}
+
           </Paper>
           <Box
             sx={{

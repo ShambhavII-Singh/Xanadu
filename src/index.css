@@ -37,3 +37,35 @@ a {
         height: auto;
     }
 }
+
+
+.dropbtn {
+    background-color: transparent;
+    padding: 5px;
+    border-color: transparent;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: -3rem;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown:hover .dropbtn {
+    border-color: #38b000;
+    border-width: 3px;
+    border-radius: 50%;
+}
