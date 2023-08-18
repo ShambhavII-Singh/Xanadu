@@ -42,7 +42,7 @@ import { parseJwt } from "utils/parse-jwt";
 import { ColorModeContextProvider } from "./contexts/color-mode";
 
 import { ThemedSiderV2, ThemedTitleV2 } from "components";
-import { ThemedHeaderV2,  } from "components/themedLayout/header";
+import { ThemedHeaderV2,  } from "components/Layout/header";
 
 import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined, DashboardOutlined } from "@mui/icons-material";
 import { MuiInferencer } from "@refinedev/inferencer/mui";

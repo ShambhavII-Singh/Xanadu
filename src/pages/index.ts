@@ -4,7 +4,7 @@ import AllProperties from './all-properties';
 import CreateProperties from './create-property';
 import Home from './home';
 import { Login } from './login';
-import Profile from './profile';
+import MyProfile from './my-profile';
 import PropertyDetails from './property-details';
 import EditProperties from './edit-property';
 
@@ -15,7 +15,7 @@ export {
   CreateProperties,
   Home,
   Login,
-  Profile,
+  MyProfile,
   PropertyDetails,
   EditProperties,
 };

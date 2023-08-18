@@ -52,8 +52,8 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
             light: "#E7FFDD",
         },
         background: {
-          default: "#f4f4f4",
-          paper: "#fcfcfc",
+          default: "#F4F4F4",
+          paper: "#FCFCFC",
         },
         text: {
           primary: "#626262",
@@ -72,8 +72,8 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
             light: "#194D19",
         },
         background: {
-          default: "#111315",
-          paper: "#1a1d1f",
+          default: "#121511",
+          paper: "#1B1F1A",
         },
         text: {
           primary: "#ffffff",

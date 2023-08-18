@@ -461,7 +461,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               width: drawerWidth(),
               overflow: "hidden",
               transition: "width 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
-              padding: "0px 5px"
+              padding: "0px 5px",
             },
           }}
           open
@@ -480,7 +480,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               paddingRight: siderCollapsed ? 0 : "8px",
               borderRadius: 0,
               borderBottom: (theme) =>
-                `1px solid ${theme.palette.action.focus}`,
+                `1px solid ${theme.palette.background.paper}`,
             }}
           >
             <RenderToTitle collapsed={siderCollapsed} />
