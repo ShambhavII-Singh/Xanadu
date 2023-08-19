@@ -462,7 +462,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                 <>
                 <RenderToTitle collapsed={siderCollapsed} />
                 <IconButton size="small" onClick={() => setSiderCollapsed(false)}>
-                  {<Menu sx={{color: "primary.dark", marginLeft: "0px", paddingLeft: "0px"}} />}
+                  {<Menu sx={{color: "primary.dark"}} />}
                 </IconButton>
                 </>
               )}
