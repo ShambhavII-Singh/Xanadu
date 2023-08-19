@@ -1,8 +1,10 @@
 import React from 'react'
+import { Box, Stack, Typography} from '@mui/material';
+import ReactApexChart from 'react-apexcharts';
 
 const PropertyReferrals = () => {
   return (
-    <div>PropertyReferrals</div>
+    <div>Property Referrals</div>
   )
 }
 
