@@ -31,7 +31,7 @@ const TotalRevenue = () => {
             <Typography fontSize={15} color="#38b000">
               0.{Math.round(Math.random()*10)}%
             </Typography>
-            <Typography fontSize={12} color="#808191">
+            <Typography fontSize={12} sx={{ color: "text.primary" }}>
               Than the Last Month
             </Typography>
           </Stack>

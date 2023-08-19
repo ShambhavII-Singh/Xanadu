@@ -41,6 +41,11 @@ const PieChart = ({ title, value, series, colors, labels }: PieChartProps) => {
               legend: { show: false },
               dataLabels: { enabled: false },
               labels: labels,
+              plotOptions: {
+                pie: {
+                  expandOnClick: true,
+                }
+              }
           }}
           series={series}
           type="donut"

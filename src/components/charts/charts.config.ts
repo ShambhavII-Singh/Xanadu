@@ -18,9 +18,21 @@ export const TotalRevenueOptions: ApexOptions = {
         toolbar: {
             show: false,
         },
+        background: "transparent",
     },
 
-    colors: ['#38b000', '#0E4605'],
+    theme: {
+        mode: 'dark', 
+        palette: 'palette1', 
+        monochrome: {
+            enabled: true,
+            color: '#38b000',
+            shadeTo: 'light',
+            shadeIntensity: 0.85
+        },
+    },
+
+    
 
     plotOptions: {
         bar: {
@@ -44,12 +56,39 @@ export const TotalRevenueOptions: ApexOptions = {
     },
 
     xaxis: {
+        title: {
+            text: 'Months',
+            style: {
+                color: "#65DE2D",
+                fontSize: "12px",
+                fontWeight: "normal"
+            }
+        },
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        labels: {
+            style: {
+                colors: "#38b000",
+                fontSize: "15px",
+                fontWeight: "bold"
+            }
+        }
     },
 
     yaxis: {
         title: {
-            text: '$ (thousands)',
+            text: '$ (thousand)',
+            style: {
+                color: "#65DE2D",
+                fontSize: "12px",
+                fontWeight: "normal"
+            }
+        },
+        labels: {
+            style: {
+                colors: "#38b000",
+                fontSize: "15px",
+                fontWeight: "bold"
+            }
         },
     },
 
@@ -60,9 +99,18 @@ export const TotalRevenueOptions: ApexOptions = {
     legend: {
         position: 'top',
         horizontalAlign: 'right',
+        labels: {
+            colors: "#65DE2D",
+        },
+        itemMargin: {
+            horizontal: 10,
+        }
     },
     
     tooltip: {
+        style: {
+            fontSize: "12px",
+        },
         y: {
             formatter(val: number) {
             return `$ ${val} thousands`;
