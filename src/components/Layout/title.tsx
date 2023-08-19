@@ -54,7 +54,7 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
         display: "flex",
         alignItems: "center",
         gap: "2px",
-        marginLeft: collapsed ? (isMobile ? "7px" : "27px") : (isMobile ? 0 : "0px"),
+        marginLeft: collapsed ? (isMobile ? "0px" : "27px") : (isMobile ? 0 : "0px"),
         justifyContent: "center",
         ...wrapperStyles,
       }}

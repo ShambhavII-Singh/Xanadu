@@ -73,7 +73,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         },
         background: {
           default: "#121511",
-          paper: "#1B1F1A",
+          paper: "#232F20",
         },
         text: {
           primary: "#ffffff",

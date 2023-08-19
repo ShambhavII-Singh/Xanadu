@@ -118,7 +118,15 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           >
 
             <div className="dropdown" >
-              <button className="dropbtn">{user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}</button>
+              <button className="dropbtn">
+                {user?.avatar && <Avatar src={user?.avatar} alt={user?.name} />}
+                {user?.name && (
+                  <Typography variant="subtitle2" fontSize={"15px"} fontWeight={"400"} data-testid="header-user-name" 
+                  sx={{color: "primary.dark",":hover": {textDecoration: (theme) => `underline solid ${theme.palette.primary.dark} 1px`}}}>
+                    {user?.name}
+                  </Typography>
+                )}
+              </button>
               <div className="dropdown-content" style={{background: `${menu}`}}>
                 <Box marginRight="10px">
                   <IconButton
@@ -199,12 +207,6 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 </Box>
               </div>
             </div>
-            {user?.name && (
-              <Typography variant="subtitle2" fontSize={"15px"} fontWeight={"400"} data-testid="header-user-name" 
-              sx={{color: "primary.dark",":hover": {textDecoration: (theme) => `underline solid ${theme.palette.primary.dark} 1px`}}}>
-                {user?.name}
-              </Typography>
-            )}
           </Stack>
         </Stack>
       </Toolbar>

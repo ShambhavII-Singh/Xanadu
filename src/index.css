@@ -42,8 +42,13 @@ a {
 .dropbtn {
     background-color: transparent;
     padding: 5px;
-    border-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border: none;
 }
+
 
 .dropdown {
     position: relative;
@@ -64,8 +69,3 @@ a {
     flex-direction: column;
 }
 
-.dropdown:hover .dropbtn {
-    border-color: #38b000;
-    border-width: 3px;
-    border-radius: 50%;
-}
