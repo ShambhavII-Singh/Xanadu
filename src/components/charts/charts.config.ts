@@ -32,8 +32,6 @@ export const TotalRevenueOptions: ApexOptions = {
         },
     },
 
-    
-
     plotOptions: {
         bar: {
             borderRadius: 4,
@@ -47,7 +45,7 @@ export const TotalRevenueOptions: ApexOptions = {
     },
 
     grid: {
-        show: false,
+        show: true,
     },
 
     stroke: {
@@ -57,38 +55,24 @@ export const TotalRevenueOptions: ApexOptions = {
 
     xaxis: {
         title: {
-            text: 'Months',
-            style: {
-                color: "#65DE2D",
-                fontSize: "12px",
-                fontWeight: "normal",
-            }
+            text: undefined,
         },
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
         labels: {
             style: {
                 colors: "#38b000",
-                fontSize: "15px",
-                fontWeight: "bold"
+                fontSize: "12px",
+                fontWeight: "400"
             }
         }
     },
 
     yaxis: {
         title: {
-            text: '$ (thousand)',
-            style: {
-                color: "#65DE2D",
-                fontSize: "12px",
-                fontWeight: "normal"
-            }
+            text: undefined,
         },
         labels: {
-            style: {
-                colors: "#38b000",
-                fontSize: "15px",
-                fontWeight: "bold"
-            }
+            show: false,
         },
     },
 
@@ -97,16 +81,7 @@ export const TotalRevenueOptions: ApexOptions = {
     },
     
     legend: {
-        position: 'top',
-        horizontalAlign: 'right',
-        fontSize: '15px',
-        fontWeight: '500',
-        labels: {
-            colors: "#65DE2D",
-        },
-        itemMargin: {
-            horizontal: 10,
-        }
+        show: false,
     },
     
     tooltip: {

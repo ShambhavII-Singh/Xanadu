@@ -15,9 +15,22 @@ const TotalRevenue = () => {
       borderRadius="15px"
       sx={{bgcolor: "background.paper"}}
     >
-      <Typography fontSize={18} fontWeight={600} sx={{ color: "text.primary", cursor: "pointer" }}>
-          Total Revenue
-      </Typography>
+      <Stack my="20px" direction="row" sx={{alignItems: "center", justifyContent: "space-between"}} flexWrap="wrap">
+        <Typography fontSize={18} fontWeight={600} sx={{ color: "text.primary", cursor: "pointer" }}>
+            Total Revenue
+        </Typography>
+        <div style={{display: "flex", alignItems: "center", gap: "31px",}}>
+          <div style={{display: "flex", alignItems: "center", gap: "5px",}}>
+            <div style={{backgroundColor: "#38b000", borderRadius: "50%", width: "13px", height: "13px"}}></div>
+            <Typography fontSize={12} fontWeight={600} sx={{color: "text.primary"}}>Running month</Typography>
+          </div>
+          <div style={{display: "flex", alignItems: "center", gap: "5px",}}>
+            <div style={{backgroundColor: "#8dd26c", borderRadius: "50%", width: "13px", height: "13px"}}></div>
+            <Typography fontSize={12} fontWeight={600} sx={{color: "text.primary"}}>Last month</Typography>
+          </div>
+        </div>
+      </Stack>
+      
 
       <Stack my="20px" direction="row" gap={4} flexWrap="wrap">
         <Typography fontSize={28} fontWeight={700} sx={{ color: "text.secondary", cursor: "pointer" }}>
