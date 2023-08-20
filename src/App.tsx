@@ -45,7 +45,6 @@ import { ThemedSiderV2, ThemedTitleV2 } from "components";
 import { ThemedHeaderV2,  } from "components/Layout/header";
 
 import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined, DashboardOutlined } from "@mui/icons-material";
-import { MuiInferencer } from "@refinedev/inferencer/mui";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
