@@ -73,6 +73,7 @@ const Home = () => {
           width="100%"
           direction={{ xs: "column", lg: "row" }}
           gap={4}
+          marginRight={"10px"}
       >
         <TotalRevenue />
         <PropertyReferrals />

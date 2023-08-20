@@ -22,7 +22,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 }) => {
   const colorModeFromLocalStorage = localStorage.getItem("colorMode");
   const isSystemPreferenceDark = window?.matchMedia(
-    "(prefers-color-scheme: light)"
+    "(prefers-color-scheme: dark)"
   ).matches;
 
   const systemPreference = isSystemPreferenceDark ? "dark" : "light";

@@ -61,7 +61,7 @@ export const TotalRevenueOptions: ApexOptions = {
             style: {
                 color: "#65DE2D",
                 fontSize: "12px",
-                fontWeight: "normal"
+                fontWeight: "normal",
             }
         },
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
@@ -99,6 +99,8 @@ export const TotalRevenueOptions: ApexOptions = {
     legend: {
         position: 'top',
         horizontalAlign: 'right',
+        fontSize: '15px',
+        fontWeight: '500',
         labels: {
             colors: "#65DE2D",
         },
@@ -109,7 +111,7 @@ export const TotalRevenueOptions: ApexOptions = {
     
     tooltip: {
         style: {
-            fontSize: "12px",
+            fontSize: "15px",
         },
         y: {
             formatter(val: number) {
