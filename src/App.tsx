@@ -27,13 +27,13 @@ import { CredentialResponse } from "interfaces/google";
 import { 
   Login,
   Home,
-  // AgentProfile,
-  // Agent,
-  // AllProperties,
-  // CreateProperties,
-  // EditProperties,
-  // Profile,
-  // PropertyDetails
+  CreateProperties,
+  AgentProfile,
+  Agent,
+  AllProperties,
+  EditProperties,
+  MyProfile,
+  PropertyDetails
 } from "pages";
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -161,7 +161,10 @@ function App() {
                 },
                 {
                   name: "Properties",
-                  list: MuiInferencer,
+                  list: AllProperties,
+                  create: CreateProperties,
+                  edit: EditProperties,
+                  show: PropertyDetails,
                   icon: <VillaOutlined />,
                   meta: {
                     canDelete: true,
@@ -169,7 +172,8 @@ function App() {
                 },
                 {
                   name: "Agents",
-                  list: MuiInferencer,
+                  list: Agent,
+                  show: AgentProfile,
                   icon: <PeopleAltOutlined />,
                   meta: {
                     canDelete: true,
@@ -177,7 +181,7 @@ function App() {
                 },
                 {
                   name: "Reviews",
-                  list: MuiInferencer,
+                  list: Home,
                   icon: <StarOutlineRounded />,
                   meta: {
                     canDelete: true,
@@ -185,7 +189,7 @@ function App() {
                 },
                 {
                   name: "Messages",
-                  list: MuiInferencer,
+                  list: Home,
                   icon: <ChatBubbleOutline />,
                   meta: {
                     canDelete: true,
@@ -193,7 +197,7 @@ function App() {
                 },
                 {
                   name: "Profile",
-                  list: MuiInferencer,
+                  list: MyProfile,
                   icon: <AccountCircleOutlined />,
                   options: {label: "Profile"},
                   meta: {
