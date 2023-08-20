@@ -12,10 +12,10 @@ import {
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Home = () => {
-  const onSale = Math.random()*100;
-  const rented = Math.random()*100;
-  const satisfied = Math.random()*100;
-  const urban = Math.random()*100;
+  const onSale = Math.random();
+  const rented = Math.random();
+  const satisfied = Math.random();
+  const urban = Math.random();
   const isMobile = useMediaQuery('(max-width: 900px)');
     // const { data, isLoading, isError } = useList({
     //     resource: "properties",
@@ -41,28 +41,28 @@ const Home = () => {
         <PieChart
           title="Properties for Sale"
           value={684}
-          series={[(onSale*684),((100-onSale)*684)]}
+          series={[(onSale*684),((1-onSale)*684)]}
           colors={["#38b000", "#0E4605"]}
           labels={["On Sale", "Sold"]}
         />
         <PieChart
             title="Properties for Rent"
             value={1054}
-            series={[(rented*1054),((100-rented)*1054)]}
+            series={[(rented*1054),((1-rented)*1054)]}
             colors={["#38b000", "#0E4605"]}
             labels={["Rented", "Owned"]}
         />
         <PieChart
             title="Total customers"
             value={5684}
-            series={[((100-satisfied)*5684), (satisfied*5684)]}
+            series={[((1-satisfied)*5684), (satisfied*5684)]}
             colors={["#0E4605", "#38b000"]}
             labels={["Unstisfied", "Satisfied"]}
         />
         <PieChart
             title="Properties for Cities"
             value={555}
-            series={[(urban*555), ((100-urban)*555)]}
+            series={[(urban*555), ((1-urban)*555)]}
             colors={["#38b000", "#0E4605"]}
             labels={["Urban", "Rural"]}
         />

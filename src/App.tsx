@@ -27,14 +27,24 @@ import { CredentialResponse } from "interfaces/google";
 import { 
   Login,
   Home,
-  CreateProperties,
-  AgentProfile,
-  Agent,
+} from "./pages";
+
+import {
   AllProperties,
+  CreateProperties,
   EditProperties,
+  PropertyDetails,
+} from "./pages/properties";
+
+import {
+  Agent,
+  AgentProfile,
+} from "./pages/agents";
+
+import {
   MyProfile,
-  PropertyDetails
-} from "pages";
+} from "./pages/profiles";
+
 
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
@@ -155,15 +165,15 @@ function App() {
                   list:"/",
                   meta:{
                     label:"Dashboard",
-                    icon:<DashboardOutlined/>,
+                    icon:<DashboardOutlined />,
                   },
                 },
                 {
                   name: "Properties",
-                  list: AllProperties,
-                  create: CreateProperties,
-                  edit: EditProperties,
-                  show: PropertyDetails,
+                  list: "/properties",
+                  create: "/properties/all-properties",
+                  edit: "/properties/edit-property",
+                  show: "/properties/property-details",
                   icon: <VillaOutlined />,
                   meta: {
                     canDelete: true,
@@ -171,8 +181,8 @@ function App() {
                 },
                 {
                   name: "Agents",
-                  list: Agent,
-                  show: AgentProfile,
+                  list: "/agents",
+                  show: "/agents/AgentProfile",
                   icon: <PeopleAltOutlined />,
                   meta: {
                     canDelete: true,
@@ -180,7 +190,7 @@ function App() {
                 },
                 {
                   name: "Reviews",
-                  list: Home,
+                  list: "/",
                   icon: <StarOutlineRounded />,
                   meta: {
                     canDelete: true,
@@ -188,7 +198,7 @@ function App() {
                 },
                 {
                   name: "Messages",
-                  list: Home,
+                  list: "/",
                   icon: <ChatBubbleOutline />,
                   meta: {
                     canDelete: true,
@@ -196,7 +206,7 @@ function App() {
                 },
                 {
                   name: "Profile",
-                  list: MyProfile,
+                  list: "/profiles",
                   icon: <AccountCircleOutlined />,
                   options: {label: "Profile"},
                   meta: {
@@ -224,6 +234,20 @@ function App() {
                     index
                     element={<Home />}
                   />
+
+                  <Route path="/properties">
+                    <Route index element={<AllProperties />} />
+                    <Route path="create" element={<CreateProperties />} />
+                    <Route path="edit/:id" element={<EditProperties />} />
+                    <Route path="show/:id" element={<PropertyDetails />} />
+                  </Route>
+                  <Route path="/agents">
+                    <Route index element={<Agent />} />
+                    <Route path="show/:id" element={<AgentProfile />} />
+                  </Route>
+                  <Route path="/profiles">
+                    <Route index element={<MyProfile />} />
+                  </Route>
                   
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
