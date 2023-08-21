@@ -171,7 +171,7 @@ function App() {
                 {
                   name: "Properties",
                   list: "/properties",
-                  create: "/properties/all-properties",
+                  create: "/properties/create-property",
                   edit: "/properties/edit-property",
                   show: "/properties/property-details",
                   icon: <VillaOutlined />,
@@ -237,13 +237,13 @@ function App() {
 
                   <Route path="/properties">
                     <Route index element={<AllProperties />} />
-                    <Route path="create" element={<CreateProperties />} />
-                    <Route path="edit/:id" element={<EditProperties />} />
-                    <Route path="show/:id" element={<PropertyDetails />} />
+                    <Route path="properties/create-property" element={<CreateProperties />} />
+                    <Route path="properties/edit/:id" element={<EditProperties />} />
+                    <Route path="properties/show/:id" element={<PropertyDetails />} />
                   </Route>
                   <Route path="/agents">
                     <Route index element={<Agent />} />
-                    <Route path="show/:id" element={<AgentProfile />} />
+                    <Route path="agents/show/:id" element={<AgentProfile />} />
                   </Route>
                   <Route path="/profiles">
                     <Route index element={<MyProfile />} />
