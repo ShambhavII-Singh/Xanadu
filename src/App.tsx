@@ -49,7 +49,7 @@ import {
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { parseJwt } from "utils/parse-jwt";
 
-import { ColorModeContextProvider } from "./contexts/color-mode";
+import { ColorModeContextProvider } from "./contexts";
 
 import { ThemedSiderV2, ThemedTitleV2 } from "components";
 import { ThemedHeaderV2,  } from "components/Layout/header";

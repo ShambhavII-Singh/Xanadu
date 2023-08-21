@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
 import { Box, IconButton } from "@mui/material";
 import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
-import { ColorModeContext } from "../../contexts/color-mode";
+import { ColorModeContext } from "../../contexts";
 import '../../index.css';
 import Logout from "@mui/icons-material/Logout";
 

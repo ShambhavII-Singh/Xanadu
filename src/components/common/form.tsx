@@ -10,7 +10,7 @@ import { CustomButton } from 'components';
 import { KeyboardArrowDown } from '@mui/icons-material'
 
 const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImageChange, onFinishHandler, propertyImage }: FormProps ) => {
-  const icon = ()  => {return (<KeyboardArrowDown sx={{color: "text.secondary", marginRight: "1rem"}} />)};
+  const icon = ()  => {return (<KeyboardArrowDown sx={{color: "primary.light", marginRight: "1rem"}} />)};
   return (
     <Box>
       <Typography fontSize={25} fontWeight={700} sx={{color: "primary.dark"}}>
