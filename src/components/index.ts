@@ -1,6 +1,7 @@
 import Profile from './common/profile';
 import PropertyCard from './common/property-card';
 import CustomButton from './common/custom-button';
+import Form from './common/form';
 
 // charts
 import PieChart from './charts/pie-chart';
@@ -22,6 +23,7 @@ export {
     TotalRevenue,
     AgentCard,
     TopAgent,
+    Form,
 };
 
 export { ThemedSiderV2 } from "./Layout/sider";

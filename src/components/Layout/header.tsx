@@ -76,7 +76,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
         sx={{
           marginTop: "5px",
           marginBottom: "5px",
-          marginLeft: "15px",
+          marginLeft: "10px",
           marginRight: "15px",
           borderRadius: "15px",
           minWidth: "170px",

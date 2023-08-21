@@ -72,7 +72,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const { mutate: mutateLogout } = useLogout({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
   });
-
   const [open, setOpen] = useState<{ [k: string]: any }>({});
 
   React.useEffect(() => {

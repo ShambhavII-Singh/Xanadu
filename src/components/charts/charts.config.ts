@@ -61,8 +61,8 @@ export const TotalRevenueOptions: ApexOptions = {
         labels: {
             style: {
                 colors: "#38b000",
-                fontSize: "12px",
-                fontWeight: "400"
+                fontSize: "15px",
+                fontWeight: "600"
             }
         }
     },

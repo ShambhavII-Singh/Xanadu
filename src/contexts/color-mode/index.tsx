@@ -37,8 +37,10 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
   const setColorMode = () => {
     if (mode === "light") {
       setMode("dark");
+      window.localStorage.setItem("colorMode", "dark");
     } else {
       setMode("light");
+      window.localStorage.setItem("colorMode", "light");
     }
   };
   
@@ -58,6 +60,11 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         text: {
           primary: "#626262",
           secondary: "#808191",
+        },
+        info: {
+          main: "#000000",
+          light: "#c2c2c2",
+          dark: "#c2c2c2",
         }
     },
   });
@@ -78,6 +85,11 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
         text: {
           primary: "#ffffff",
           secondary: "#ffffff",
+        },
+        info: {
+          main: "#ffffff",
+          light: "#ffffff",
+          dark: "#ffffff",
         }
     },
   });
