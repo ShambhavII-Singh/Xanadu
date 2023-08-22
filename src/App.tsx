@@ -76,7 +76,7 @@ function App() {
       const profileObj = credential ? parseJwt(credential) : null;
 
       if (profileObj) {
-        const response = await fetch('https://localhost:8080/api/v1/users', {
+        const response = await fetch('http://localhost:8080/api/v1/users', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -86,19 +86,14 @@ function App() {
           }),
         })
         const data = await response.json();
-        if (response.status === 200) {
-          localStorage.setItem(
-            "user",
-            JSON.stringify({
-              ...profileObj,
-              avatar: profileObj.picture,
-              userid: data._id,
-            })
-          );
-        }
-        else {
-          return Promise.reject();
-        }
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            ...profileObj,
+            avatar: profileObj.picture,
+            userid: data._id,
+          })
+        );
 
         localStorage.setItem("token", `${credential}`);
 
