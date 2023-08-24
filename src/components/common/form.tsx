@@ -18,6 +18,8 @@ const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImag
       </Typography>
       <Box mt={2.5} borderRadius="15px" padding="20px" sx={{bgcolor: "background.paper"}}>
         <form
+          action="create"
+          resource="post"
           style={{
               marginTop: "20px",
               width: "100%",
@@ -41,7 +43,6 @@ const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImag
             <TextField
                 fullWidth
                 required
-                id="outlined-basic"
                 color="info"
                 variant="outlined"
                 {...register("title", { required: true })}
@@ -59,10 +60,9 @@ const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImag
               Enter Description
             </FormHelperText>
             <TextareaAutosize
-              fullWidth
               required
               variant="outlined"
-              {...register("title", { required: true })}
+              {...register("description", { required: true })}
               style={{
                 width: "100%",
                 background: "transparent",
@@ -108,6 +108,9 @@ const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImag
                 <MenuItem value="duplex">Duplex</MenuItem>
                 <MenuItem value="studio">Studio</MenuItem>
                 <MenuItem value="chalet">Chalet</MenuItem>
+                <MenuItem value="retail space">Retail Space</MenuItem>
+                <MenuItem value="office space">Office Space</MenuItem>
+                <MenuItem value="hotel">Hotel</MenuItem>
               </Select>
             </FormControl>
             <FormControl>
@@ -124,7 +127,6 @@ const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImag
               <TextField
                 fullWidth
                 required
-                id="outlined-basic"
                 color="info"
                 variant="outlined"
                 {...register("price", { required: true })}
@@ -146,7 +148,6 @@ const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImag
             <TextField
                 fullWidth
                 required
-                id="outlined-basic"
                 color="info"
                 variant="outlined"
                 {...register("location", { required: true })}

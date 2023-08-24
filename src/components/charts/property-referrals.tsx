@@ -50,7 +50,7 @@ const PropertyReferrals = () => {
         display="flex"
         flexDirection="column"
         borderRadius="15px"
-        sx={{bgcolor: "background.paper"}}
+        sx={{bgcolor: "background.paper", marginRight: localStorage.getItem("siderColllapsed")==="collapsed"? "3px" : "0px" }}
       >
         <Typography fontSize={18} fontWeight={600} sx={{color: "primary.dark", cursor: "pointer"}}>
           Property Referrals

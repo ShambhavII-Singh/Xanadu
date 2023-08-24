@@ -74,6 +74,7 @@ const Home = () => {
           direction={{ xs: "column", lg: "row" }}
           gap={4}
           marginRight={"10px"}
+          sx={{flexGrow: 1}}
       >
         <TotalRevenue />
         <PropertyReferrals />
