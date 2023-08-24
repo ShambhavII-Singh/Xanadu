@@ -35,10 +35,6 @@ const CreateProperty = () => {
 
     const onFinishHandler = async (data: FieldValues) => {
         if (!propertyImage.name) return alert("Please select an image");
-		alert("Property Created!");
-		setTimeout(function() {
-			navigateTo('/properties')
-		},1500);
 		await fetch('http://localhost:8080/api/v1/properties', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -46,6 +42,10 @@ const CreateProperty = () => {
 				...data, photo: propertyImage.url, email: identity?.email,
 			}),
         })
+		alert("Property Created!");
+		setTimeout(function() {
+			navigateTo('/properties')
+		},1500);
     };
 	const isMobile = useMediaQuery('(max-width: 900px)');
 	return (
