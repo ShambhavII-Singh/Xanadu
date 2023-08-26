@@ -1,20 +1,53 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Stack, Box, Typography, TextField, MenuItem, Select } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { Add, SearchRounded, KeyboardArrowDown } from '@mui/icons-material';
 import { CustomButton } from 'components';
 import { useNavigate } from 'react-router-dom';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTable } from '@refinedev/core';
 import { PropertyCard } from '../../components';
+import '../../index.css';
 
 const AllProperties = () => {
+    const icon = ()  => {return (<KeyboardArrowDown sx={{color: "primary.dark", marginRight: "1rem"}} />)};
     const {tableQueryResult: {
         data, isLoading, isError
-    }} = useTable();
+    },
+        current,
+        setCurrent,
+        setPageSize,
+        pageCount,
+        sorter,
+        setSorter,
+        filters,
+        setFilters,    
+    } = useTable();
+
     const allProperties = data?.data ?? []; 
     const navigateTo = useNavigate();
     const isMobile = useMediaQuery('(max-width: 900px)');
     console.log(localStorage);
+
+    const currentPrice = sorter.find((item) => item.field === "price")?.order;
+
+    const toggleSort = (field: string) => {
+        setSorter([{ field, order: currentPrice === "asc" ? "desc" : "asc" }]);
+    };
+
+    const currentFilterValues = useMemo(() => {
+        const logicalFilters = filters.flatMap((item) =>
+            "field" in item ? item : [],
+        );
+
+        return {
+            title:
+                logicalFilters.find((item) => item.field === "title")?.value ||
+                "",
+            propertyType:
+                logicalFilters.find((item) => item.field === "propertyType")
+                    ?.value || "",
+        };
+    }, [filters]);
 
     if (isLoading) {return (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>Loading...</Typography>)}
     if (isError) {return (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>Error...</Typography>)}
@@ -34,12 +67,78 @@ const AllProperties = () => {
                         icon={ <Add /> }
                     />
                 </Stack>
-                <Box mb={2} mt={3} display="flex" justifyContent="flex-end" flexWrap="wrap">
-                    <Stack direction={"row"}>
-                        
-                    </Stack>
+                <Box mb={2} gap="30px" display="flex" alignContent="center" flexWrap="wrap" width="100%" sx={{borderColor: "transparent" , bgcolor: "background.default", justifyContent: "center"}}>
+                    <TextField
+                                variant="outlined"
+                                color="info"
+                                placeholder="Search by title"
+                                value={currentFilterValues.title}
+                                onChange={(e) => {
+                                    setFilters([
+                                        {
+                                            field: "title",
+                                            operator: "contains",
+                                            value: e.currentTarget.value ? e.currentTarget.value : undefined,
+                                        },
+                                    ]);
+                                }}
+                                sx = {{ width: "50%", margin: "0 30px", animation: "transition: all 5s ease-in", bgcolor: "background.paper" }}
+                            />
+                    <CustomButton
+                                title={`Sort price  ${
+                                    currentPrice === "asc" ? "↑" : "↓"
+                                }`}
+                                handleClick={() => toggleSort("price")}
+                                backgroundColor="#38b000"
+                                color="#fcfcfc"
+                            />
+                    <Select
+                                sx = {{marginLeft: "5px", bgcolor: "background.paper" }}
+                                variant="outlined"
+                                color="info"
+                                displayEmpty
+                                required
+                                inputProps={{ "aria-label": "Without label" }}
+                                defaultValue=""
+                                value={currentFilterValues.propertyType}
+                                IconComponent={icon}
+                                onChange={(e) => {
+                                    setFilters(
+                                        [
+                                            {
+                                                field: "propertyType",
+                                                operator: "eq",
+                                                value: e.target.value,
+                                            },
+                                        ],
+                                        "replace",
+                                    );
+                                }}
+                            >
+                                <MenuItem value="">All</MenuItem>
+                                {[
+                                    "Apartment",
+                                    "Villa",
+                                    "Farmhouse",
+                                    "Condos",
+                                    "Townhouse",
+                                    "Duplex",
+                                    "Studio",
+                                    "Chalet",
+                                    "Retail Space",
+                                    "Office Space",
+                                    "Hotel"
+                                ].map((type) => (
+                                    <MenuItem
+                                        key={type}
+                                        value={type.toLowerCase()}
+                                    >
+                                        {type}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                 </Box>
-                    <Box mt="20px" sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-around"}}>
+                    <Box mt="10px" sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-around"}}>
                     {allProperties?.map((property) => (
                         <PropertyCard
                             key={property._id}
