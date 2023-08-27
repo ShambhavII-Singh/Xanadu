@@ -17,8 +17,8 @@ const AllProperties = () => {
         setCurrent,
         setPageSize,
         pageCount,
-        sorter,
-        setSorter,
+        sorters,
+        setSorters,
         filters,
         setFilters,    
     } = useTable();
@@ -26,12 +26,11 @@ const AllProperties = () => {
     const allProperties = data?.data ?? []; 
     const navigateTo = useNavigate();
     const isMobile = useMediaQuery('(max-width: 900px)');
-    console.log(localStorage);
 
-    const currentPrice = sorter.find((item) => item.field === "price")?.order;
+    const currentPriceSort = sorters.find((item) => item.field === "price")?.order;
 
     const toggleSort = (field: string) => {
-        setSorter([{ field, order: currentPrice === "asc" ? "desc" : "asc" }]);
+        setSorters([{ field, order: currentPriceSort === "asc" ? "desc" : "asc" }]);
     };
 
     const currentFilterValues = useMemo(() => {
@@ -86,7 +85,7 @@ const AllProperties = () => {
                     />
                     <CustomButton
                         title={`Sort price  ${
-                            currentPrice === "asc" ? "↑" : "↓"
+                            currentPriceSort === "asc" ? "↑" : "↓"
                         }`}
                         handleClick={() => toggleSort("price")}
                         backgroundColor="#38b000"
@@ -150,6 +149,53 @@ const AllProperties = () => {
                         />
                     ))}
                 </Box>
+                {allProperties.length > 0 && (
+                <Box display="flex" gap={2} mt={1} flexWrap="wrap" width="100%" sx={{justifyContent: "center"}}>
+                    {(current>1) && (<CustomButton
+                        title="Previous"
+                        handleClick={() => setCurrent((prev) => prev - 1)}
+                        backgroundColor="#38b000"
+                        color="#ffffff"
+                    />)}
+                    <Box
+                        display={{ xs: "hidden", sm: "flex" }}
+                        alignItems="center"
+                        gap="5px"
+                    >
+                        Page{" "}
+                        <strong>
+                            {current} of {pageCount}
+                        </strong>
+                    </Box>
+                    {(current!==pageCount) && (<CustomButton
+                        title="Next"
+                        handleClick={() => setCurrent((prev) => prev + 1)}
+                        backgroundColor="#38b000"
+                        color="#ffffff"
+                    />)}
+                    <Select
+                        sx={{bgcolor: "background.paper", marginLeft: "30px"}}
+                        IconComponent={icon}
+                        variant="outlined"
+                        color="info"
+                        displayEmpty
+                        required
+                        inputProps={{ "aria-label": "Without label" }}
+                        defaultValue={10}
+                        onChange={(e) =>
+                            setPageSize(
+                                e.target.value ? Number(e.target.value) : 10,
+                            )
+                        }
+                    >
+                        {[10, 20, 30, 40, 50].map((size) => (
+                            <MenuItem key={size} value={size}>
+                                Show {size}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </Box>
+            )}
             </Box>
     )
 }
