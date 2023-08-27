@@ -148,6 +148,7 @@ const AllProperties = () => {
                             photo={property.photo}
                         />
                     ))}
+                    {!allProperties && (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>No Properties to Display...</Typography>) }
                 </Box>
                 {allProperties.length > 0 && (
                 <Box display="flex" gap={2} mt={1} flexWrap="wrap" width="100%" sx={{justifyContent: "center"}}>
