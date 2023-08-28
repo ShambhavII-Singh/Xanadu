@@ -201,22 +201,22 @@ function App() {
                     canDelete: true,
                   },
                 },
-                {
-                  name: "Reviews",
-                  list: "/",
-                  icon: <StarOutlineRounded />,
-                  meta: {
-                    canDelete: true,
-                  },
-                },
-                {
-                  name: "Messages",
-                  list: "/",
-                  icon: <ChatBubbleOutline />,
-                  meta: {
-                    canDelete: true,
-                  },
-                },
+                // {
+                //   name: "Reviews",
+                //   list: "/",
+                //   icon: <StarOutlineRounded />,
+                //   meta: {
+                //     canDelete: true,
+                //   },
+                // },
+                // {
+                //   name: "Messages",
+                //   list: "/",
+                //   icon: <ChatBubbleOutline />,
+                //   meta: {
+                //     canDelete: true,
+                //   },
+                // },
                 {
                   name: "Profile",
                   list: "/profiles",
