@@ -8,7 +8,7 @@ const PropertyCard = ({ id, title, price, location, photo }: PropertyCardProps) 
   return (
     <Card
       component={Link}
-      to={`properties/show/${id}`}
+      to={`property-details/${id}`}
       sx={{
           flexGrow: 1 ,
           width: "350px",

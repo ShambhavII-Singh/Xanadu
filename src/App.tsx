@@ -54,7 +54,7 @@ import { ColorModeContextProvider } from "./contexts";
 import { ThemedSiderV2, ThemedTitleV2 } from "components";
 import { ThemedHeaderV2,  } from "components/Layout/header";
 
-import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined, DashboardOutlined } from "@mui/icons-material";
+import { AccountCircleOutlined, PeopleAltOutlined, VillaOutlined, DashboardOutlined } from "@mui/icons-material";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -152,7 +152,6 @@ function App() {
     getIdentity: async () => {
       const user = localStorage.getItem("user");
       if (user) {
-        console.log(user);
         return JSON.parse(user);
       }
 
@@ -185,8 +184,8 @@ function App() {
                   name: "Properties",
                   list: "/properties",
                   create: "/properties/create-property",
-                  edit: "/properties/edit-property",
-                  show: "/properties/property-details",
+                  edit: "/properties/edit-property/:id",
+                  show: "/properties/property-details/:id",
                   icon: <VillaOutlined />,
                   meta: {
                     canDelete: true,
@@ -250,13 +249,13 @@ function App() {
 
                   <Route path="/properties">
                     <Route index element={<AllProperties />} />
-                    <Route path="properties/create-property" element={<CreateProperties />} />
-                    <Route path="properties/edit/:id" element={<EditProperties />} />
-                    <Route path="properties/show/:id" element={<PropertyDetails />} />
+                    <Route path="create-property" element={<CreateProperties />} />
+                    <Route path="edit-property/:id" element={<EditProperties />} />
+                    <Route path="property-details/:id" element={<PropertyDetails />} />
                   </Route>
                   <Route path="/agents">
                     <Route index element={<Agent />} />
-                    <Route path="agents/show/:id" element={<AgentProfile />} />
+                    <Route path="show/:id" element={<AgentProfile />} />
                   </Route>
                   <Route path="/profiles">
                     <Route index element={<MyProfile />} />

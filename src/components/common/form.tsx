@@ -194,8 +194,7 @@ const Form = ( { type, register, onFinish, formLoading, handleSubmit, handleImag
             </Stack>
             <Typography
                 fontSize={14}
-                color="#808191"
-                sx={{ wordBreak: "break-all" }}
+                sx = {{color:"text.secondary", wordBreak: "break-all"}}
             >
               {propertyImage?.name}
             </Typography>
