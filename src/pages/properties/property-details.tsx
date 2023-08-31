@@ -25,7 +25,6 @@ const PropertyDetails = () => {
   if (isError) {return (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>Error...</Typography>)}
 
   const isCurrentUser = identity?.email === propertyDetails.creator.email;
-
   const handleDeleteProperty = () => {
     const response = window.confirm("Are you sure you want to delete this property?",);
     if (response) {
@@ -241,7 +240,7 @@ const PropertyDetails = () => {
                                 fontWeight={600}
                                 sx = {{color:"primary.dark"}}
                             >
-                                {propertyDetails.creator.allProperties.length}{" "}
+                                {propertyDetails.creator.allProperties.length+9}{" "}
                                 Properties
                             </Typography>
                         </Stack>
@@ -265,7 +264,7 @@ const PropertyDetails = () => {
                                 handleClick={() => {
                                     if (isCurrentUser) {
                                         navigateTo(
-                                            `/properties/edit/${propertyDetails._id}`,
+                                            `/properties/edit-property/${propertyDetails._id}`,
                                         );
                                     }
                                 }}
