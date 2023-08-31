@@ -9,49 +9,49 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import "../../index.css";
 
 const PropertyDetails = () => {
-  const isMobile = useMediaQuery('(max-width: 900px)');
-  const navigateTo  = useNavigate();
-  const { data: identity } = useGetIdentity<{
+    const isMobile = useMediaQuery('(max-width: 900px)');
+    const navigateTo  = useNavigate();
+    const { data: identity } = useGetIdentity<{
     email: string;
-  }>();
-  const { id } = useParams();
-  const { mutate } = useDelete();
-  const { queryResult } = useShow();
+    }>();
+    const { id } = useParams();
+    const { mutate } = useDelete();
+    const { queryResult } = useShow();
 
-  const { data, isLoading, isError } = queryResult;
-  const propertyDetails = data?.data ?? {};
+    const { data, isLoading, isError } = queryResult;
+    const propertyDetails = data?.data ?? {};
 
-  if (isLoading) {return (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>Loading...</Typography>)}
-  if (isError) {return (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>Error...</Typography>)}
+    if (isLoading) {return (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>Loading...</Typography>)}
+    if (isError) {return (<Typography fontSize={18} fontWeight={700} sx={{color: "primary.dark"}}>Error...</Typography>)}
 
-  const isCurrentUser = identity?.email === propertyDetails.creator.email;
-  const handleDeleteProperty = () => {
+    const isCurrentUser = identity?.email === propertyDetails.creator.email;
+    const handleDeleteProperty = () => {
     const response = window.confirm("Are you sure you want to delete this property?",);
     if (response) {
-      mutate(
-          {
+        mutate(
+            {
             resource: "properties",
             id: id as string,
-          },
-          {
-              onSuccess: () => {
+            },
+            {
+                onSuccess: () => {
                 navigateTo("/properties");
-              },
-          },
-      );
+                },
+            },
+        );
     }
-  };
+    };
 
-  function checkImage(url: any) {
+    function checkImage(url: any) {
     const img = new Image();
     img.src = url;
     return img.width !== 0 && img.height !== 0;
-  }
+    }
 
-  return (
+    return (
     <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, paddingLeft: isMobile ? "66px" : "5px" }} flexDirection={"column"}>
-      <Typography fontSize={25} fontWeight={700} sx={{color: "primary.dark"}}>Details</Typography>
-      <Box
+        <Typography fontSize={25} fontWeight={700} sx={{color: "primary.dark"}}>Details</Typography>
+        <Box
                 mt="5px"
                 mb="20px"
                 display="flex"
@@ -60,14 +60,14 @@ const PropertyDetails = () => {
                 sx = {{ justifyContent: "center", backgroundColor: "background.default"}}
             >
                 <Box flex={1} maxWidth={764} width={"100%"} borderRadius="15px" sx={{backgroundColor: "background.paper", padding: "35px"}}>
-                  <div style={{width: "100%"}}>
+                    <div style={{width: "100%"}}>
                     <img
                         src={propertyDetails.photo}
                         alt="property_details-img"
                         style={{ objectFit: "cover", borderRadius: "15px" }}
                         className="property_details-img"
                     />
-                  </div>
+                    </div>
                     
 
                     <Box mt="15px">
@@ -240,7 +240,7 @@ const PropertyDetails = () => {
                                 fontWeight={600}
                                 sx = {{color:"primary.dark"}}
                             >
-                                {propertyDetails.creator.allProperties.length+9}{" "}
+                                {propertyDetails.creator.allProperties.length}{" "}
                                 Properties
                             </Typography>
                         </Stack>

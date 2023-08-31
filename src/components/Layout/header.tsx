@@ -99,7 +99,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   );
 
   var alt, menu;
-  if (mode==="light") {alt = "Dark Theme"; menu="#FCFCFC";}
+  if (mode==="light") {alt = "Dark Theme"; menu="#FFFFFF";}
   else {alt = "Light Theme"; menu="#1B1F1A";}
   return (
     <AppBar position={prefferedSticky ? "sticky" : "relative"} sx={{backgroundColor: "background.paper"}}>

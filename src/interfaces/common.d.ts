@@ -14,7 +14,8 @@ export interface ProfileProps {
     name: string,
     avatar: string,
     email: string,
-    properties: Array | undefined
+    properties: Array | undefined,
+    isMobile: boolean
 }
 
 export interface PropertyProps {
